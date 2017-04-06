@@ -1,22 +1,26 @@
 os:
-  - linux
-  
+- linux
 sudo:
-  - false
+- false
 language:
-  - python
-  
+- python
 before_script:
-  - git clone https://github.com/radare/radare2 && cd radare2
-  - ./configure --prefix=`pwd`/install > /dev/null
-  - make -s -j2 > /dev/null
-  - make install > /dev/null
-  - cd ..
-  - pip install r2pipe
-  - wget http://junk.rada.re/masm32.zip
-  - unzip masm32.zip
-  - rm masm32.zip
-
+- git clone https://github.com/radare/radare2 && cd radare2
+- "./configure --prefix=`pwd`/install > /dev/null"
+- make -s -j2 > /dev/null
+- make install > /dev/null
+- cd ..
+- pip install r2pipe
+- wget http://junk.rada.re/masm32.zip
+- unzip masm32.zip
+- rm masm32.zip
 script:
-  - python script.py masm32
-  - zip -r masm32.zip masm32
+- python script.py masm32
+- zip -r masm32.zip masm32
+deploy:
+  provider: releases
+  api_key:
+    secure: J31ZaBDjjqX/3P/5Hcf9QJFoYIguC4JMRzNqkIRBbmUti9yivyK6//mWMVRaW8WLO1KtXykSg/yRSlNV27qTQ819YCh3y3gU7hSd+MqWC7VUOFFIrPfMbSSQh5pOHuM/s55pzlTRvIcWiV2KvXWB/35IBUwmfQlrJic/2tHZVp3YhcgR63l7dfuDxs0+MZJ0q2MgYFMso2LZKeYc+oCD5ROfjVlnlmQulECCMLVmb6YERNvtVWe6LIVs/UKMFHrif14PAlonYLptNhPN5ZOBoU4tG5ltZeAq5Mo7uI17jJ8rlNinTelR/a7TNALJ82nVj7IT1xReQV7YeF/rJeHZ6gCqiflwglr7kK+WzKm++sB5EBbawIJog8GBT0W7VKVQwZhZF2G7GuPomuKZYuw21ibel3que57/0fJDzCGIMc7NwroeRK8Mji4aNPMe+V5w+3Jjy64+yDLnH18km+fmpfyif9PuQOG4KL3fojyc9AEckTHc8hh+STZgKS5aMLkplza4/OcNWPEpA0nNT9SnxzFHUhJklbWWxZ1insWhHZ+N7NiMgd6X90L1sAxrTlfbjH9VfxBdPHMVU/HuZKPE5MsOaX03PNJzE1EPGZXPtOkTycF2AK2SP/Xl5vLcqsjLDImfJQqOZU8sL7o+NZDULM7sd3/4YwTbZrfk05+o6lE=
+  file: masm32.zip
+  on:
+    repo: Maijin/radare2-sigs
