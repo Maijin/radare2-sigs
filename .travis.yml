@@ -1,0 +1,20 @@
+os:
+  - linux
+  
+sudo:
+  - false
+language:
+  - python
+  
+before_script:
+  - git clone https://github.com/radare/radare2 && cd radare2
+  - ./configure --prefix=`pwd`/install > /dev/null
+  - make -s -j2 > /dev/null
+  - make install > /dev/null
+  - cd ..
+  - pip install r2pipe
+  - wget http://junk.rada.re/masm32.zip
+  - unzip masm32.zip
+
+script:
+  - python script.py masm32
