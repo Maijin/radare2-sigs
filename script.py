@@ -2,7 +2,7 @@ import r2pipe
 import sys, glob, os
 
 os.mkdir("masm32")
-for file in glob.glob(sys.argv[1]+"*.obj"):
+for file in glob.glob("obj/*.obj"):
     r2 = r2pipe.open(file)
     r2.cmd('f-entry0')
     r2.cmd('f-section..text')
