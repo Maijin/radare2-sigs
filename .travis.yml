@@ -10,6 +10,10 @@ before_script:
 - make -s -j2 > /dev/null
 - make install > /dev/null
 - export PATH=${TRAVIS_BUILD_DIR}/radare2/install/bin:${PATH}
+- export LD_LIBRARY_PATH=${TRAVIS_BUILD_DIR}/radare2/install/lib:${LD_LIBRARY_PATH}
+- export LIBR_INCLUDE=${TRAVIS_BUILD_DIR}/radare2/libr/include
+- export LIBR_UTIL=${TRAVIS_BUILD_DIR}/radare2/libr/util
+- export PKG_CONFIG_PATH=${TRAVIS_BUILD_DIR}/radare2/pkgcfg
 - cd ..
 - pip install r2pipe
 - wget http://junk.rada.re/masm32.zip
