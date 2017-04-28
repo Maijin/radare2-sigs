@@ -21,7 +21,7 @@ before_script:
 - rm masm32.zip
 script:
 - python script.py masm32
-- zip -r masm32.zip masm32
+- zip -r masm32.zip masm32.zig.gz
 deploy:
   skip_cleanup: true
   provider: releases
