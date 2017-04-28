@@ -15,6 +15,7 @@ for file in glob.glob("obj/*.obj"):
     r2.cmd('zos masm32/masm32.zig')
     r2.quit()
 
-with open('masm32/masm32.zig', 'rb') as f_in:
-    with gzip.open('masm32/masm32.zig.gz', 'wb') as f_out:
+with open('./masm32/masm32.zig', 'rb') as f_in:
+    with gzip.open('./masm32.zig.gz', 'wb') as f_out:
         shutil.copyfileobj(f_in, f_out)
+shutil.rmtree("./masm32/")
